@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mohon Maaf Lahir dan Batin</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('bglebaran.webp'); /* Ganti 'background_image.jpg' dengan URL atau path ke gambar latar belakang Anda */
+        background-size: cover;
+        background-position: center;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.393); /* Tambahkan alpha untuk membuat konten lebih terbaca */
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        position: relative;
+    }
+    h1 {
+        color: #333;
+    }
+    .buttons {
+        margin-top: 30px;
+    }
+    .button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .forgiven {
+        background-color: #4caf50;
+        color: #fff;
+    }
+    .not-forgiven {
+        background-color: #eb6056;
+        color: #fff;
+    }
+    .copyright {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #555;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Mohon Maaf Lahir dan Batin, apabila ada kesalahan yang disengaja ataupun tidak disengaja</h1>
+    <div class="buttons">
+        <button class="button forgiven" onclick="sendMessage('mohon maaf lahir baatin juga')">iya kami maafkan</button>
+        <button id="notForgivenButton" class="button not-forgiven" onclick="moveButton()">ngapain gw maafin</button>
+    </div>
+    <div class="copyright">
+        &copy; 2024 Ahmad Salsabillah. Hak Cipta Dilindungi Undang-undang.
+    </div>
+</div>
+
+<!-- Script to send message to WhatsApp and move button -->
+<script>
+    function sendMessage(status) {
+        var message = "Assalamu'alaikum, saya sabil beserta keluarga besar meminta  maaf lahir dan batin, ";
+        if (status === 'mohon maaf lahir baatin juga') {
+            message += "mohon maaf, semoga kita selalu diberi kesempatan untuk memperbaiki diri.";
+        } else if (status === 'Tidak Dimaafkan') {
+            message += "berharap agar kita bisa saling memaafkan dan melupakan kesalahan di masa lalu.";
+        }
+        var whatsappURL = "https://api.whatsapp.com/send?phone=6282111922012&text=" + encodeURIComponent(message);
+        window.open(whatsappURL, '_blank');
+    }
+
+    function moveButton() {
+        var button = document.getElementById('notForgivenButton');
+        var container = document.querySelector('.container');
+        var containerRect = container.getBoundingClientRect();
+        var randomX = Math.floor(Math.random() * (containerRect.width - 100));
+        var randomY = Math.floor(Math.random() * (containerRect.height - 50));
+        button.style.position = 'absolute';
+        button.style.left = randomX + 'px';
+        button.style.top = randomY + 'px';
+    }
+</script>
+</body>
+</html>
